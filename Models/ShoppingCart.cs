@@ -8,6 +8,6 @@ namespace BookStore.Models
         public int Id { get; set; }
 
         // Navigation property
-        public virtual List<ShoppingCartItem>? ShoppingCartItems { get; set; }
+        public virtual List<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace BookStore.Repositories
             return await _context.Genres.ToListAsync();
         }
 
-        public async Task<Genre?> GetGenreByIdAsync(int id)
+        public async Task<Genre> GetGenreByIdAsync(int id)
         {
-            ValueTask<Genre?> valueTask = _context.Genres.FindAsync(id);
+            ValueTask<Genre> valueTask = _context.Genres.FindAsync(id);
             return await valueTask;
         }
 

@@ -10,10 +10,10 @@ namespace BookStore.Models
 
         [Required]
         [MaxLength(100)]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         // Navigation property
         [JsonIgnore]
-        public virtual List<Book>? Books { get; set; }
+        public virtual List<Book> Books { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace BookStore.Repositories
         Task AddReviewAsync(Review review);
         Task DeleteReviewAsync(int id);
         Task<List<Review>> GetAllReviewsAsync();
-        Task<Review?> GetReviewByIdAsync(int id);
+        Task<Review> GetReviewByIdAsync(int id);
         Task UpdateReviewAsync(Review review);
     }
 }

@@ -16,18 +16,16 @@ namespace BookStore.Models
         public decimal UnitPrice { get; set; }
 
         // Foreign keys
-        [Required]
         public int BookId { get; set; }
 
-        [Required]
         public int OrderId { get; set; }
 
         // Navigation properties
         [ForeignKey("BookId")]
-        public virtual Book? Book { get; set; }
+        public virtual Book Book { get; set; }
 
         [ForeignKey("OrderId")]
-        public virtual Order? Order { get; set; }
+        public virtual Order Order { get; set; }
 
     }
 }

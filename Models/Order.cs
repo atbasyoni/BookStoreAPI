@@ -16,6 +16,6 @@ namespace BookStore.Models
         public decimal TotalAmount { get; set; }
 
         // Navigation properties
-        public virtual List<OrderItem>? OrderItems { get; set; }
+        public virtual List<OrderItem> OrderItems { get; set; }
     }
 }

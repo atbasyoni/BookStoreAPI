@@ -7,7 +7,7 @@ namespace BookStore.Repositories
         Task AddAuthorAsync(Author author);
         Task DeleteAuthorAsync(int id);
         Task<List<Author>> GetAllAuthorsAsync();
-        Task<Author?> GetAuthorByIdAsync(int id);
+        Task<Author> GetAuthorByIdAsync(int id);
         Task UpdateAuthorAsync(Author author);
     }
 }

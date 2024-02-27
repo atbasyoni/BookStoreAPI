@@ -2,6 +2,7 @@
 using BookStore.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace BookStore.Controllers
 {
@@ -15,7 +16,7 @@ namespace BookStore.Controllers
         {
             _bookRepository = bookRepository;
         }
-
+        /*
         // GET: api/book
         [HttpGet]
         public async Task<ActionResult<List<Book>>> GetBooks()
@@ -23,9 +24,27 @@ namespace BookStore.Controllers
             var books = await _bookRepository.GetAllBooksAsync();
             return Ok(books);
         }
+        */
+        // GET: api/book
+        [HttpGet]
+        public async Task<IActionResult> GetBooksPerPage(
+            [FromQuery] string genre = null,
+            [FromQuery] string sort = null,
+            [FromQuery] int page = 1)
+        {       
+            PagedResult<Book> p = await _bookRepository.GetPagedBooks(genre, sort, page);
+            return Ok(new { p.Books, p.TotalPages });
+        }
+
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAllBooks()
+        {
+            var books = await _bookRepository.GetAllBooksAsync();
+            return Ok(books);
+        }
 
         // GET: api/book/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "Get Book by Id")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
             var book = await _bookRepository.GetBookByIdAsync(id);
@@ -37,6 +56,18 @@ namespace BookStore.Controllers
 
             return Ok(book);
         }
+
+        /*
+        // GET: api/book
+        [HttpGet]
+        public async Task<ActionResult<List<Book>>> GetBooks([FromQuery] int currentPage, [FromQuery] int itemsPerPage)
+        {
+            var books = await _bookRepository.GetBooksPerPageAsync(currentPage, itemsPerPage);
+            int totalItems = await _bookRepository.GetTotal();
+
+            return Ok(new { books, totalItems });
+        }
+        */
 
         // POST: api/book
         [HttpPost]

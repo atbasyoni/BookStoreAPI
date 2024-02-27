@@ -84,6 +84,7 @@ namespace BookStore
 
             app.UseAuthorization();
 
+            app.UseCors("MyPolicy");
 
             app.MapControllers();
 

@@ -9,13 +9,13 @@ namespace BookStore.Models
         public int Id { get; set; }
 
         [MaxLength(100)]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
-        [MaxLength(500)]
-        public string? Bio { get; set; }
+        [MaxLength(1000)]
+        public string Bio { get; set; }
 
         // Navigation property
         [JsonIgnore]
-        public virtual List<Book>? Books { get; set; }
+        public virtual List<Book> Books { get; set; }
     }
 }

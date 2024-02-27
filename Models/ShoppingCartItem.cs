@@ -12,17 +12,15 @@ namespace BookStore.Models
         public int Quantity { get; set; }
 
         // Foreign key
-        [Required]
         public int BookId { get; set; }
 
-        [Required]
         public int ShoppingCartId { get; set; }
 
         // Navigation properties
         [ForeignKey("BookId")]
-        public virtual Book? Book { get; set; }
+        public virtual Book Book { get; set; }
 
         [ForeignKey("ShoppingCartId")]
-        public virtual ShoppingCart? ShoppingCart { get; set; }
+        public virtual ShoppingCart ShoppingCart { get; set; }
     }
 }

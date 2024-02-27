@@ -12,50 +12,48 @@ namespace BookStore.Models
 
         [Required]
         [MaxLength(100)]
-        public string? Title { get; set; }
+        public string Title { get; set; }
 
         [Required]
-        [MaxLength(10)]
-        public string? ISBN { get; set; }
+        [MaxLength(15)]
+        public string ISBN { get; set; }
 
-        [MaxLength(500)]
-        public string? Description { get; set; }
+        [MaxLength(1000)]
+        public string Description { get; set; }
 
         [Required]
         public int Pages { get; set; }
 
         [Required]
-        public string? Language { get; set; }
+        public string Language { get; set; }
 
         [Required]
-        public string? Image { get; set; }
+        public string Image { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateTime PublicationDate { get; set; }
+        public int PublicationDate { get; set; }
 
         // Foreign keys
+        [JsonIgnore]
         public int AuthorId { get; set; }
-
+        [JsonIgnore]
         public int GenreId { get; set; }
 
         // Navigation properties
         [ForeignKey("AuthorId")]
-        [JsonIgnore]
-        public virtual Author? Author { get; set; }
+        public virtual Author Author { get; set; }
 
         [ForeignKey("GenreId")]
-        [JsonIgnore]
-        public virtual Genre? Genre { get; set; }
+        public virtual Genre Genre { get; set; }
 
         [JsonIgnore]
-        public virtual List<Review>? Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; }
 
         [JsonIgnore]
-        public virtual List<OrderItem>? OrderItems { get; set; }
+        public virtual List<OrderItem> OrderItems { get; set; }
     }
 }

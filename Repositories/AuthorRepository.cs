@@ -17,9 +17,9 @@ namespace BookStore.Repositories
             return await _context.Authors.ToListAsync();
         }
 
-        public async Task<Author?> GetAuthorByIdAsync(int id)
+        public async Task<Author> GetAuthorByIdAsync(int id)
         {
-            ValueTask<Author?> valueTask = _context.Authors.FindAsync(id);
+            ValueTask<Author> valueTask = _context.Authors.FindAsync(id);
             return await valueTask;
         }
 

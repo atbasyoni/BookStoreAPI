@@ -17,9 +17,9 @@ namespace BookStore.Repositories
             return await _context.Reviews.ToListAsync();
         }
 
-        public async Task<Review?> GetReviewByIdAsync(int id)
+        public async Task<Review> GetReviewByIdAsync(int id)
         {
-            ValueTask<Review?> valueTask = _context.Reviews.FindAsync(id);
+            ValueTask<Review> valueTask = _context.Reviews.FindAsync(id);
             return await valueTask;
         }
 

@@ -9,17 +9,17 @@ namespace BookStore.Models
 
         [Required]
         [MaxLength(100)]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [MaxLength(500)]
-        public string? Address { get; set; }
+        public string Address { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [Required]
-        public string? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
