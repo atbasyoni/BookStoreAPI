@@ -1,5 +1,11 @@
 
+using BookStore.Core;
+using BookStore.Core.Interfaces;
+using BookStore.Core.Models;
+using BookStore.EF;
 using BookStore.EF.Data;
+using BookStore.EF.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Api
@@ -19,6 +25,11 @@ namespace BookStore.Api
 
             builder.Services.AddDbContext<ApplicationDbContext>(option =>
             option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped(typeof(IBaseRepository<>),typeof(BaseRepository<>));
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             var app = builder.Build();
 
