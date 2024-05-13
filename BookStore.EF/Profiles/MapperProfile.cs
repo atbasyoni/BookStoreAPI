@@ -15,6 +15,7 @@ namespace BookStore.EF.Profiles
         {
             CreateMap<Book, BookDTO>();
             CreateMap<Author, AuthorDTO>();
+            CreateMap<Genre, GenreDTO>();
         }
     }
 }
