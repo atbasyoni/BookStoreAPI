@@ -14,8 +14,16 @@ namespace BookStore.EF.Profiles
         public MapperProfile()
         {
             CreateMap<Book, BookDTO>();
+            CreateMap<BookDTO, Book>();
+
             CreateMap<Author, AuthorDTO>();
+            CreateMap<AuthorDTO, Author>();
+
             CreateMap<Genre, GenreDTO>();
+            CreateMap<GenreDTO, Genre>();
+
+            CreateMap<ApplicationUser, RegisterDTO>();
+            CreateMap<RegisterDTO, ApplicationUser>();
         }
     }
 }
