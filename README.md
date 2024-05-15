@@ -12,7 +12,7 @@ To get started with the Football API project, follow these steps:
 3. Configure the project settings, including database connection strings, JWT token settings, and other environment-specific configurations.
 4. Run the project and access the API endpoints to retrieve information about football leagues, clubs, and players.
 
-### Prerequisites
+## Prerequisites
 
 Book Store API (Endpoints) is designed to be user-friendly and intuitive, making it easy for healthcare providers and patients to navigate. Here's a step-by-step guide on how to use the Endpoints effectively:
 
