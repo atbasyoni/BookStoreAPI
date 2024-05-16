@@ -14,13 +14,16 @@ namespace BookStore.EF.Profiles
         public MapperProfile()
         {
             CreateMap<Book, BookDTO>();
-            CreateMap<BookDTO, Book>();
+            CreateMap<BookDTO, Book>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<Author, AuthorDTO>();
-            CreateMap<AuthorDTO, Author>();
+            CreateMap<AuthorDTO, Author>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<Genre, GenreDTO>();
-            CreateMap<GenreDTO, Genre>();
+            CreateMap<GenreDTO, Genre>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<ApplicationUser, RegisterDTO>();
             CreateMap<RegisterDTO, ApplicationUser>();

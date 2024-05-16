@@ -48,13 +48,13 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(GenreDTO model)
+        public async Task<IActionResult> UpdateAsync(int id, GenreDTO model)
         {
-            var genre = await _unitOfWork.Genres.FindAsync(g => g.Id == model.Id);
+            var genre = await _unitOfWork.Genres.FindAsync(g => g.Id == id);
             if(genre is null)
                 return NotFound();
 
-            genre = _mapper.Map<Genre>(model);
+            genre = _mapper.Map(model, genre);
             _unitOfWork.Genres.Update(genre);
             await _unitOfWork.Complete();
             return Ok(genre);

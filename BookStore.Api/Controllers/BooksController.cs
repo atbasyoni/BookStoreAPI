@@ -49,13 +49,13 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(BookDTO model)
+        public async Task<IActionResult> UpdateAsync(int id, BookDTO model)
         {
-            var book = await _unitOfWork.Books.FindAsync(b => b.Id == model.Id);
+            var book = await _unitOfWork.Books.FindAsync(b => b.Id == id);
             if(book is null)
                 return NotFound(model);
 
-            book = _mapper.Map<Book>(model);
+            _mapper.Map(model, book);
             _unitOfWork.Books.Update(book);
             await _unitOfWork.Complete();
             return Ok(book);

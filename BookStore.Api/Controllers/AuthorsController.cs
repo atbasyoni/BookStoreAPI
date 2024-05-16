@@ -48,12 +48,14 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(AuthorDTO model)
+        public async Task<IActionResult> UpdateAsync(int id, AuthorDTO model)
         {
-            var author = await _unitOfWork.Authors.FindAsync(a => a.Id == model.Id);
+            var author = await _unitOfWork.Authors.FindAsync(a => a.Id == id);
             if(author is null)
                 return NotFound();
-            author = _mapper.Map<Author>(model);
+
+            _mapper.Map(model, author);
+            _unitOfWork.Authors.Update(author);
             await _unitOfWork.Complete();
             return Ok(author);
         }
