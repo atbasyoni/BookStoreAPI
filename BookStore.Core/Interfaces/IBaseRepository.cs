@@ -14,6 +14,10 @@ namespace BookStore.Core.Interfaces
         Task<T> AddAsync(T entity);
         void Update(T entity);
         Task<T> FindAsync(Expression<Func<T, bool>> criteria);
+        Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> criteria, int? skip, int? take,
+            Expression<Func<T, bool>>? orderBy = null, string direction = "ASC");
         T Delete(int id);
+        Task<int> CountAsync();
+
     }
 }

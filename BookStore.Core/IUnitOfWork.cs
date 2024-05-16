@@ -10,7 +10,7 @@ namespace BookStore.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        IBaseRepository<Book> Books { get; }
+        IBookRepository Books { get; }
         IBaseRepository<Author> Authors { get; }
         IBaseRepository<Genre> Genres { get; }
         Task<int> Complete();

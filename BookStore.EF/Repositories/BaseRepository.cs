@@ -12,7 +12,7 @@ namespace BookStore.EF.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _context;
+        protected readonly ApplicationDbContext _context;
 
         public BaseRepository(ApplicationDbContext context) => _context = context;
 
@@ -22,12 +22,38 @@ namespace BookStore.EF.Repositories
             return entity;
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await _context.Set<T>().CountAsync();
+        }
+
         public T Delete(int id)
         {
             var entity = _context.Set<T>().Find(id);
             if(entity is not null)
                 _context.Set<T>().Remove(entity);
             return entity;
+        }
+
+        public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> criteria, int? skip, int? take, Expression<Func<T, bool>>? orderBy = null, string direction = "ASC")
+        {
+            IQueryable<T> query = _context.Set<T>().Where(criteria);
+
+            if(take.HasValue)
+                query = query.Take(take.Value);
+
+            if(skip.HasValue)
+                query = query.Skip(skip.Value);
+
+            if(orderBy != null)
+            {
+                if(direction == "ASC")
+                    query = query.OrderBy(orderBy);
+                else
+                    query = query.OrderByDescending(orderBy);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<T> FindAsync(Expression<Func<T, bool>> criteria)

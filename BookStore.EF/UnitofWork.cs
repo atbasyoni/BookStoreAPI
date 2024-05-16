@@ -15,14 +15,14 @@ namespace BookStore.EF
     {
         private readonly ApplicationDbContext _context;
 
-        public IBaseRepository<Book> Books {  get; private set; }
+        public IBookRepository Books {  get; private set; }
         public IBaseRepository<Author> Authors {  get; private set; }
         public IBaseRepository<Genre> Genres {  get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            Books = new BaseRepository<Book>(_context);
+            Books = new BookRepository(_context);
             Authors = new BaseRepository<Author>(_context);
             Genres = new BaseRepository<Genre>(_context);
         }
