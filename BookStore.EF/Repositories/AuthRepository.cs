@@ -3,7 +3,10 @@ using BookStore.Core.DTOs;
 using BookStore.Core.Helpers;
 using BookStore.Core.Interfaces;
 using BookStore.Core.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -17,15 +20,22 @@ namespace BookStore.EF.Repositories
     public class AuthRepository : IAuthRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IMapper _mapper;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailSenderRepository _emailSender;
+        private readonly IMapper _mapper;
         private readonly JWT _jwt;
 
-        public AuthRepository(UserManager<ApplicationUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt) 
+        public AuthRepository(
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IEmailSenderRepository emailSender,
+            IMapper mapper,
+            IOptions<JWT> jwt)
         {
             _userManager = userManager;
-            _mapper = mapper;
             _roleManager = roleManager;
+            _emailSender = emailSender;
+            _mapper = mapper;
             _jwt = jwt.Value;
         }
 
@@ -184,5 +194,74 @@ namespace BookStore.EF.Repositories
                 CreatedOn = DateTime.UtcNow,
             };
         }
+
+        public async Task<string> ConfirmEmail(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return "Invalid UserId";
+            }
+
+            if (user.EmailConfirmed)
+            {
+                return "The email has already been confirmed.";
+            }
+
+            var decodedToken = DecodeToken(token);
+
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
+            
+            if (!result.Succeeded)
+            {
+                return "An error occurred in your email confirmation.";
+            }
+
+            return result.ToString();
+        }
+
+        public async Task ForgetPassword(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            
+            if(user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                _emailSender.ResetPasswordEmail(token, user);
+            }
+        }
+
+        public string DecodeToken(string token)
+        {
+            var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
+            return Encoding.UTF8.GetString(tokenDecodedBytes);
+        }
+
+        public async Task<string> ResetPassword(ResetPasswordDTO model)
+        {
+            var user = await _userManager.FindByIdAsync(model.UserId);
+
+            if (user is null)
+            {
+                return "An error occurred while retrieving the user.";
+            }
+
+            if (model.Password != model.ConfirmPassword)
+            {
+                return "The Password doesn't match confirmed password.";
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            
+            if (!result.Succeeded) 
+            {
+                return "An error occurred while changing your password.";
+            }
+
+            return result.ToString();
+        }
+
     }
 }

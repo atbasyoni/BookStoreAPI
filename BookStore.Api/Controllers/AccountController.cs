@@ -49,6 +49,32 @@ namespace BookStore.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            await _authRepository.ConfirmEmail(userId, token);
+            return Ok("Your email address has been successfully confirmed.");
+        }
+
+        [HttpPost("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(string email)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            await _authRepository.ForgetPassword(email);
+            return Ok("Your email address has been successfully confirmed");
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDTO model)
+        {
+            await _authRepository.ResetPassword(model);
+            return Ok("Password reset successfully");
+        }
+
+
+
         [HttpPost("RevokeToken")]
         public async Task<IActionResult> RevokeToken([FromBody] RevokeTokenDTO model)
         {

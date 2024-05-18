@@ -1,5 +1,6 @@
 
 using BookStore.Core;
+using BookStore.Core.DTOs;
 using BookStore.Core.Helpers;
 using BookStore.Core.Interfaces;
 using BookStore.Core.Models;
@@ -39,6 +40,11 @@ namespace BookStore.Api
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped(typeof(IBaseRepository<>),typeof(BaseRepository<>));
             builder.Services.AddScoped(typeof(IAuthRepository),typeof(AuthRepository));
+            builder.Services.AddTransient<IEmailRepository, EmailRepository>();
+            builder.Services.AddTransient<IEmailSenderRepository, EmailSenderRepository>();
+            
+            var emailConfiguration = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfigurationDTO>();
+            builder.Services.AddSingleton(emailConfiguration);
 
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MapperProfile)));
 

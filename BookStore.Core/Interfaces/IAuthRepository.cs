@@ -1,5 +1,6 @@
 ﻿using BookStore.Core.DTOs;
 using BookStore.Core.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,8 @@ namespace BookStore.Core.Interfaces
         Task<AuthModel> LoginAsync(LoginDTO model);
         Task<string> AddRoleAsync(RoleDTO model);
         Task<bool> RevokeTokenAsync(string token);
+        Task<string> ConfirmEmail(string userId, string token);
+        Task ForgetPassword(string email);
+        Task<string> ResetPassword(ResetPasswordDTO model);
     }
 }

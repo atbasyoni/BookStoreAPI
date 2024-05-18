@@ -1,5 +1,5 @@
 ﻿using BookStore.Core.Interfaces;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Products.Books;
 using BookStore.EF.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,7 +16,7 @@ namespace BookStore.EF.Repositories
 
         public async Task<IEnumerable<Book>> GetAllByAuthorIdAsync(int authorId)
         {
-            return await _context.Books.Where(b => b.AuthorId == authorId).ToListAsync();
+            return await _context.Books.ToListAsync();
         }
     }
 }
