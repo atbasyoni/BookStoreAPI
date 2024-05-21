@@ -8,7 +8,8 @@ namespace BookStore.Core.Models.Helpers
 {
     public class Image : BaseEntity
     {
-        public string Title { get; set; }
-        public string ImageURL { get; set; }
+        public string Title { get; set; } = null!;
+        public string URL { get; set; } = null!;
+        public int Position { get; set; } = 1;
     }
 }

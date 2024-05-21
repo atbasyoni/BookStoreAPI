@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using BookStore.Core;
-using BookStore.Core.DTOs;
-using BookStore.Core.Models;
+using BookStore.Core.DTOs.Authors;
+using BookStore.Core.Models.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +40,7 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddAsync(AuthorDTO model)
         {
             var newAuthor = _mapper.Map<Author>(model);
@@ -48,6 +50,7 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAsync(int id, AuthorDTO model)
         {
             var author = await _unitOfWork.Authors.FindAsync(a => a.Id == id);
@@ -61,6 +64,7 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var author = _unitOfWork.Authors.Delete(id);

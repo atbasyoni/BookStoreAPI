@@ -1,5 +1,6 @@
 ﻿using BookStore.Core.Interfaces;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Orders;
+using BookStore.Core.Models.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace BookStore.Core
         IBookRepository Books { get; }
         IBaseRepository<Author> Authors { get; }
         IBaseRepository<Genre> Genres { get; }
+        IBaseRepository<Order> Orders { get; }
         Task<int> Complete();
     }
 }

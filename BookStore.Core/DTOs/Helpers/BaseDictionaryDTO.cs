@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Models.Products.BookItems
+namespace BookStore.Core.DTOs.Helpers
 {
-    public class DiscountCode
+    public class BaseDictionaryDTO : BaseDTO
     {
+        public string Name { get; set; }
     }
 }

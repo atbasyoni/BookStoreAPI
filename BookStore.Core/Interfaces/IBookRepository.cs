@@ -9,6 +9,6 @@ namespace BookStore.Core.Interfaces
 {
     public interface IBookRepository : IBaseRepository<Book>
     {
-        Task<IEnumerable<Book>> GetAllByAuthorIdAsync(int authorId);
+
     }
 }

@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using BookStore.Core;
-using BookStore.Core.DTOs;
+using BookStore.Core.DTOs.Books;
 using BookStore.Core.Models.Products.Books;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,54 +23,66 @@ namespace BookStore.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAllBooksAsync()
         {
-            var books = await _unitOfWork.Books.GetAllAsync();
-            if (books is null)
-                return NotFound();
-            return Ok(books);
+            return Ok(await _unitOfWork.Books.GetAllAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [AllowAnonymous]
+        public async Task<IActionResult> GetBookByIdAsync(int id)
         {
-            var book = await _unitOfWork.Books.GetByIdAsync(id);
-            if(book is null)
-                return NotFound();
-            return Ok(book);
+            return Ok(await _unitOfWork.Books.GetByIdAsync(id));
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync(BookDTO model)
+        [Authorize]
+        public async Task<IActionResult> AddBookAsync(CreateBookDTO model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var newBook = _mapper.Map<Book>(model);
+            
             await _unitOfWork.Books.AddAsync(newBook);
             await _unitOfWork.Complete();
+            
             return Ok(newBook);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(int id, BookDTO model)
+        [Authorize]
+        public async Task<IActionResult> UpdateBookAsync(int id, BookDTO model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var book = await _unitOfWork.Books.FindAsync(b => b.Id == id);
+           
             if(book is null)
                 return NotFound(model);
 
             _mapper.Map(model, book);
+            
             _unitOfWork.Books.Update(book);
             await _unitOfWork.Complete();
+            
             return Ok(book);
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var book = _unitOfWork.Books.Delete(id);
+           
             if(book is null)
                 return NotFound();
 
             await _unitOfWork.Complete();
+            
             return Ok(book);
         }
     }

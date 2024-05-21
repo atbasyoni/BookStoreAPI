@@ -1,5 +1,5 @@
 ﻿using BookStore.Core.DTOs;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Accounts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

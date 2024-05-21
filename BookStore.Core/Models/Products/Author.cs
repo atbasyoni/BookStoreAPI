@@ -5,16 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using BookStore.Core.Models.Helpers;
 using BookStore.Core.Models.Products.Books;
 
-namespace BookStore.Core.Models
+namespace BookStore.Core.Models.Products
 {
-    public class Author
+    public class Author : DictionaryTable
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Bio { get; set; }
+        public string Bio { get; set; }
         public string? Image { get; set; }
-        public IEnumerable<Book>? Books { get; set; }
     }
 }

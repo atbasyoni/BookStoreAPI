@@ -1,5 +1,5 @@
 ﻿using BookStore.Core.Interfaces;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,7 +2,7 @@
 using BookStore.Core.DTOs;
 using BookStore.Core.Helpers;
 using BookStore.Core.Interfaces;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Accounts;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

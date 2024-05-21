@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Models.Helpers
+namespace BookStore.Core.DTOs.Helpers
 {
-    public class DictionaryTable : BaseEntity
+    public class BaseDTO
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

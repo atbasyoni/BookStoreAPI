@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BookStore.Core;
 using BookStore.Core.DTOs;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Products;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

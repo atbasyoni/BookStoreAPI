@@ -3,7 +3,7 @@ using BookStore.Core;
 using BookStore.Core.DTOs;
 using BookStore.Core.Helpers;
 using BookStore.Core.Interfaces;
-using BookStore.Core.Models;
+using BookStore.Core.Models.Accounts;
 using BookStore.EF;
 using BookStore.EF.Data;
 using BookStore.EF.Profiles;

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Models
+namespace BookStore.Core.Models.Products
 {
     public class Publisher : DictionaryTable
     {
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

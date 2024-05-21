@@ -1,4 +1,5 @@
-﻿using BookStore.Core.Models;
+﻿using BookStore.Core.Models.Accounts;
+using BookStore.Core.Models.Products;
 using BookStore.Core.Models.Products.Books;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -29,8 +30,14 @@ namespace BookStore.EF.Data
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
         }
 
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+        // Books
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Genre> Genre { get; set; }
+        public DbSet<Publisher> Publisher { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<BookAuthor> BookAuthor { get; set; }
+        public DbSet<BookGenre> BookGenre { get; set; }
+        public DbSet<BookImage> BookImage { get; set; }
+
     }
 }

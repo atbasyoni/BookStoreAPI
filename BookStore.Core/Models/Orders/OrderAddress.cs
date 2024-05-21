@@ -11,11 +11,9 @@ namespace BookStore.Core.Models.Orders
     public class OrderAddress
     {
         public int OrderId { get; set; }
-        [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
 
         public int AddressId { get; set; }
-        [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
     }
 }

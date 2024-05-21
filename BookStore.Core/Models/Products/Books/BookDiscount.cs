@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 namespace BookStore.Core.Models.Products.Books
 {
-    public class BookGenre : BaseEntity
+    public class BookDiscount : BaseEntity
     {
-        public int GenreId { get; set; }
-        [JsonIgnore]
-        public virtual Genre Genre { get; set; }
-
         public int BookId { get; set; }
+
         [JsonIgnore]
         public virtual Book Book { get; set; }
+
+        public int DiscountId { get; set; }
+
+        [JsonIgnore]
+        public virtual Discount Discount { get; set; }
     }
 }
