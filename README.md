@@ -5,16 +5,16 @@ Book Store API built using ASP.NET Core Web API. The project incorporates the pr
 
 ## Getting Started
 
-To get started with the Football API project, follow these steps:
+To get started with the Book Store API project, follow these steps:
 
 1. Clone or download the project repository to your local machine.
 2. Open the project in your preferred development environment.
 3. Configure the project settings, including database connection strings, JWT token settings, and other environment-specific configurations.
-4. Run the project and access the API endpoints to retrieve information about football leagues, clubs, and players.
+4. Run the project and access the API endpoints to retrieve information about books, authors, and genres.
 
 ## Prerequisites
 
-Book Store API (Endpoints) is designed to be user-friendly and intuitive, making it easy for healthcare providers and patients to navigate. Here's a step-by-step guide on how to use the Endpoints effectively:
+Book Store API (Endpoints) is designed to be user-friendly and intuitive, making it easy for books lovers and publishers to navigate. Here's a step-by-step guide on how to use the Endpoints effectively:
 
 - You will need the latest Visual Studio 2022 and the latest .NET Core 8.
 - You will need  an MS SQL Server
