@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviors\" />
-    <Folder Include="Features\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Context\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

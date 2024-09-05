@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Behaviors\" />
-    <Folder Include="Features\" />
-  </ItemGroup>
-
 </Project>
