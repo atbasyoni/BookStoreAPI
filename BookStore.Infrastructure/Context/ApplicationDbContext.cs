@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Context
 {
-    public class DbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public DbContext(DbContextOptions<DbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
         protected override void OnModelCreating(ModelBuilder builder)
