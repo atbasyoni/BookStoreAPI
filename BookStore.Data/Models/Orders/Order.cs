@@ -6,6 +6,8 @@ namespace BookStore.Data.Models.Orders
     public class Order : BaseModel
     {
         public DateTime OrderDate { get; set; } = DateTime.Now;
+        public decimal SubTotal { get; set; }
+        public decimal Total => SubTotal + DeliveryMethod.Cost;
 
         public int OrderStatusId { get; set; }
         public OrderStatus OrderStatus { get; set; }
@@ -19,6 +21,6 @@ namespace BookStore.Data.Models.Orders
         public int AddressId { get; set; }
         public Address Address { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
+        public HashSet<OrderItem> OrderItems { get; set; }
     }
 }

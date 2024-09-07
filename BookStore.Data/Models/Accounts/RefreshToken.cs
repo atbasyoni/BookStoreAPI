@@ -12,7 +12,6 @@ namespace BookStore.Data.Models.Accounts
         public DateTime? RevokedOn { get; set; }
         public bool IsActive => RevokedOn is null || !IsExpired;
 
-        public int UserId { get; set; }
         public User User { get; set; }
     }
 }

@@ -13,9 +13,7 @@ namespace BookStore.Data.Models.Customers
         public int UserId { get; set; }
         public User User { get; set; }
 
-        public int WishlistId { get; set; }
         public Wishlist Wishlist { get; set; }
-
         public List<CustomerAddress> CustomerAddresses { get; set; }
     }
 }
